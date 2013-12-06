@@ -1,5 +1,6 @@
 defmodule Chapter5Test do
   use ExUnit.Case
+  import ExUnit.CaptureIO
 
   test "exercises chapter 5.1" do
     list_concat = fn list1, list2 -> (list1 ++ list2) end
@@ -56,6 +57,6 @@ defmodule Chapter5Test do
 
   test "exercises chapter 5.2 Functions-5" do
     assert Enum.map([1,2,3,4], &(&1 + 2)) == [3,4,5,6]
-    Enum.each([1,2,3,4], &(IO.inspect &1))
+    assert capture_io(fn -> Enum.each([1,2,3,4], &(IO.inspect &1)) end) == "1\n2\n3\n4\n"
   end
 end
