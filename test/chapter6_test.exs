@@ -36,4 +36,30 @@ defmodule Chapter6Test do
       273
       """
   end
+
+  # Chapter 6.7 stuff
+  test "Convert a float to a string with 2 decimal digits. (Erlang)" do
+    assert capture_io(fn -> :io.format("~.2f~n", [123.4567]) end) |> String.strip == "123.46"
+  end
+
+  test "Get the value of an operating system environment variable. (Elixir)" do
+    assert System.get_env("HOME") == "/Users/chris"
+  end
+
+  test "Return the extension component of a file name (so return .exs if given \"dave/test.exs\" (Elixir)" do
+    assert Path.extname("/Users/chris/book.ex") == ".ex"
+    assert Path.extname("/Users/chris/book") == ""
+  end
+
+  test "Return the current working directory of the process. (Elixir)" do
+    assert System.cwd != nil
+  end
+
+  test "Convert a string containing JSON into Elixir data structures. (Just find, don't install)" do
+    # "http://expm.co/json"
+  end
+
+  test "Execute an command in your operating system's shell" do
+    assert System.cmd("echo 'Elixir is cool'") |> String.strip == "Elixir is cool"
+  end
 end
