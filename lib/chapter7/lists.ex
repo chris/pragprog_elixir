@@ -49,12 +49,12 @@ defmodule Chapter7.Lists do
   def split(list, count) when count < 0 and abs(count) > length(list), do: { [], list }
   def split(list, count) when count < 0, do: split(list, length(list) + count)
   def split(list, count) when count > 0 and count >= length(list), do: { list, [] }
-  def split(list, count) when count > 0, do: do_split(list, count, [])
+  def split(list, count) when count > 0, do: _do_split(list, count, [])
 
-  def do_split([head|tail], count, acc) when length(acc) < count do
-    do_split(tail, count, acc ++ [head])
+  defp _do_split([head|tail], count, acc) when length(acc) < count do
+    _do_split(tail, count, acc ++ [head])
   end
-  def do_split(list, count, acc) when length(acc) == count do
+  defp _do_split(list, count, acc) when length(acc) == count do
     { acc, list }
   end
 
