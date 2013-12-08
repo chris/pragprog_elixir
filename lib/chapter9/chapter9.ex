@@ -54,4 +54,22 @@ defmodule Chapter9 do
   defp _capitalize_sentence(<< head :: utf8 , tail :: binary >>) when head <= ?Z, do: [ head | tail ]
   defp _capitalize_sentence(<< head :: utf8 , tail :: binary >>) when head > ?Z, do: [ head - 32 | tail ]
 
+  def read_sales_data(file_path) do
+    file = File.open!(file_path)
+    headers = IO.read(file, :line)
+              |> String.strip
+              |> String.split(",")
+              |> Enum.map(&binary_to_atom/1)
+
+    parse_data = fn [ id, ship_to, amount ] ->
+      [ binary_to_integer(id), binary_to_atom(String.slice(ship_to, 1..-1)), binary_to_float(amount) ]
+    end
+
+    IO.stream(file, :line)
+    |> Stream.map(&(String.strip(&1)))
+    |> Stream.map(&(String.split(&1, ",")))
+    |> Enum.to_list
+    |> Enum.map(&(parse_data.(&1)))
+    |> Enum.map(&(Enum.zip(headers, &1)))
+  end
 end

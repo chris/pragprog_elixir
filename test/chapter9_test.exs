@@ -44,4 +44,16 @@ defmodule Chapter9Test do
   test "StringsAndBinaries-6 capitalize sentences" do
     assert capitalize_sentences("oh. a DOG. woof. ") == "Oh. A DOG. Woof. "
   end
+
+  test "StringsAndBinaries-7" do
+    assert read_sales_data("test/sales_data.csv") == [
+        [ id: 123, ship_to: :NC, net_amount: 100.0 ],
+        [ id: 124, ship_to: :OK, net_amount: 35.5 ],
+        [ id: 125, ship_to: :TX, net_amount: 24.0 ],
+        [ id: 126, ship_to: :TX, net_amount: 44.8 ],
+        [ id: 127, ship_to: :NC, net_amount: 25.0 ],
+        [ id: 128, ship_to: :MA, net_amount: 10.0 ],
+        [ id: 129, ship_to: :CA, net_amount: 102.0 ],
+        [ id: 120, ship_to: :NC, net_amount: 50.0 ]]
+  end
 end
