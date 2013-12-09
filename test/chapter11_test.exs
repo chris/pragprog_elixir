@@ -18,4 +18,11 @@ defmodule Chapter11Test do
   test "ControlFlow-1 FizzBuzz with case" do
     assert Chapter11.FizzBuzzCase.upto(20) == @answers_to_twenty
   end
+
+  test "ok!" do
+    import Chapter11
+
+    assert ok!(File.open("/Users/chris/.zshrc"))
+    assert_raise RuntimeError, "Failure: enoent", fn -> ok!(File.open("/Users/foo/bar")) end
+  end
 end

@@ -77,4 +77,7 @@ defmodule Chapter11 do
       end
     end
   end
+
+  def ok!({:ok, data}), do: data
+  def ok!({_, error}), do: raise "Failure: #{error}"
 end
