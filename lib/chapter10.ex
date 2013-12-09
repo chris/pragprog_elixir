@@ -4,10 +4,7 @@ defmodule Chapter10 do
   @doc "Reads orders from a CSV and returns a list of Order records."
   def read_orders(file_path) do
     file = File.open!(file_path)
-    headers = IO.read(file, :line)
-              |> String.strip
-              |> String.split(",")
-              |> Enum.map(&binary_to_atom/1)
+    IO.read(file, :line)
 
     parse_data = fn [ id, ship_to, amount ] ->
       Order.new id: binary_to_integer(id),
