@@ -6,7 +6,7 @@ defmodule Chapter6 do
       _guess(answer, low..high, a_guess)
     end
 
-    defp _guess(answer, _low.._high, a_guess) when answer == a_guess, do: IO.puts answer
+    defp _guess(a_guess, _low.._high, a_guess), do: IO.puts a_guess
 
     defp _guess(answer, low.._high, a_guess) when a_guess > answer do
       guess(answer, low..(a_guess - 1))
