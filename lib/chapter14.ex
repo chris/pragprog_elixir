@@ -4,6 +4,11 @@ defmodule Tick do
   is going at a time, much like a clock. If a client dies, it is removed.
   When clients are added, they're added at the "end" of the ring (i.e.
   after the last client), but the ticking continues where it was.
+
+  Recommend testing/using by doing creating a terminal session for server,
+  and each client. Start the server with `Tick.start`. Then, on each
+  client do a `Node.connect` to the server, then start the client with
+  `Client.start`.
   """
 
   @name  :ticker
