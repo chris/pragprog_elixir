@@ -1,4 +1,11 @@
 defmodule Tick do
+  @moduledoc """
+  Sets up a tick server that ticks around a ring of clients. One tick
+  is going at a time, much like a clock. If a client dies, it is removed.
+  When clients are added, they're added at the "end" of the ring (i.e.
+  after the last client), but the ticking continues where it was.
+  """
+
   @name  :ticker
 
   def start do
